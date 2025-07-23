@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML + Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    :root {
+      --black: #4d4d4d;
+      --white: #fff;
+      --color-1: rgb(22, 119, 255);
+      --color-2: rgb(44, 130, 222);
+      --color-3: goldenrod; 
+      --hero: url('/img/1.jpg');
+      --parallax-1: url('/img/2.jpg');
+      --parallax-2: url('/img/3.jpg');
+    }
+
+    .btn {
+      background: var(--color-1);
+      color: var(--white);
+      text-align: center;
+      line-height: 1;
+      padding: 16px 24px;
+      border-radius: 8px;
+      transition: background .3s ease;
+      max-width: 240px;
+      white-space: nowrap;
+    }
+
+    .btn--header {
+      font-size: clamp(.5rem, 1.2vw, 1.2rem);
+      padding: 16px;
+    }
+
+    .btn-clear {
+      background: transparent !important;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn:hover {
+      background: var(--color-2);
+    }
+
+    section h2 {
+      font-size: clamp(1.25rem, 2vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    section h3 {
+      font-size: clamp(1rem, 1.75vw, 1.2rem);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 3vw, 3rem);
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .hero, .parallax {
+      position: relative;
+      background-attachment: scroll !important;
+    }
+
+    @media(min-width: 1024px) {
+      .hero, .parallax {
+        background-attachment: fixed !important;
+      }
+    }
+
+    .hero::after {
+      content: '';
+      background: rgba(0, 0, 0, .5);
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+    }
+
+    .parallax::after {
+      content: '';
+      background: rgba(0, 0, 0, .5);
+      position: absolute;
+      inset: 0;
+    }
+
+  </style>
+  <body>
+    <nav
+      id="navigation"
+      class="w-full"
+      role="navigation"
+      aria-label="Main Navigation"
+      style="padding: 20px; background-color: rgb(255, 255, 255)"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex-shrink-0">
+          <a
+            data-original-url="/"
+            aria-label="Home"
+            href="https://reviewwave.website/sales-review-wave/"
+            ><img
+              src="https://getaloha.com/wp-content/uploads/2024/07/aloha-logo.png"
+              alt="Chiropractic clinic logo - professional spine care services"
+              style="height: 50px"
+              loading="lazy"
+          /></a>
+        </div>
+        <div class="hidden md:block">
+          <ul class="hidden md:flex items-center gap-3 list-none">
+            <li class="inline-block">
+              <a
+                data-original-url="/about"
+                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                aria-label="About"
+                style="
+                  color: rgb(0, 0, 0);
+                  font-size: 16px;
+                  text-decoration: none;
+                  display: block;
+                  padding: 4px 8px;
+                  border-radius: 4px;
+                "
+                href="https://reviewwave.website/sales-review-wave/about"
+                >About</a
+              >
+            </li>
+            <li class="relative inline-block dropdown-container group">
+              <a
+                class="inline-flex items-center gap-1 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50 rounded px-2 py-1 dropdown-trigger"
+                aria-haspopup="true"
+                role="button"
+                data-original-url="/services"
+                style="color: rgb(0, 0, 0); font-size: 16px; cursor: pointer"
+                href="https://reviewwave.website/sales-review-wave/services"
+                >Services<svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path></svg
+              ></a>
+              <ul
+                class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                style="
+                  min-width: 200px;
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+                    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                "
+              >
+                <li>
+                  <a
+                    data-original-url="/chiropractic-adjustments"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Services - Chiropractic Adjustments"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/chiropractic-adjustments"
+                    >Chiropractic Adjustments</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/pain-management"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Services - Pain Management"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/pain-management"
+                    >Pain Management</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="relative inline-block dropdown-container group">
+              <a
+                class="inline-flex items-center gap-1 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50 rounded px-2 py-1 dropdown-trigger"
+                aria-haspopup="true"
+                role="button"
+                data-original-url="/symptoms"
+                style="color: rgb(0, 0, 0); font-size: 16px; cursor: pointer"
+                href="https://reviewwave.website/sales-review-wave/symptoms"
+                >Symptoms<svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path></svg
+              ></a>
+              <ul
+                class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                style="
+                  min-width: 200px;
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+                    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                "
+              >
+                <li>
+                  <a
+                    data-original-url="/back-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Back Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/back-pain"
+                    >Back Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/neck-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Neck Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/neck-pain"
+                    >Neck Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/headaches-and-migraines"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Headaches and Migraines"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/headaches-and-migraines"
+                    >Headaches and Migraines</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/scoliosis"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Scoliosis"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/scoliosis"
+                    >Scoliosis</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/arm-and-leg-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Arm and Leg Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/arm-and-leg-pain"
+                    >Arm and Leg Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/shoulder-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Shoulder Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/shoulder-pain"
+                    >Shoulder Pain</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="inline-block">
+              <a
+                data-original-url="/contact"
+                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                aria-label="Contact"
+                style="
+                  color: rgb(0, 0, 0);
+                  font-size: 16px;
+                  text-decoration: none;
+                  display: block;
+                  padding: 4px 8px;
+                  border-radius: 4px;
+                "
+                href="https://reviewwave.website/sales-review-wave/contact"
+                >Contact</a
+              >
+            </li>
+            <li class="inline-block">
+              <a
+                class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+                style="
+                  background-color: rgb(255, 255, 255);
+                  border-color: rgb(255, 255, 255);
+                  color: rgb(22, 119, 255);
+                  font-weight: 600;
+                  border-radius: 8px;
+                "
+                href="tel:(949)383-4022"
+                data-original-url="tel:(949)383-4022"
+                role="button"
+                ><span>(949) 383-4022</span></a
+              >
+            </li>
+            <li class="inline-block">
+              <a
+                class="btn btn--header ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+                style="font-weight: 500; border-radius: 6px"
+                href="https://reviewwave.website/sales-review-wave/opto-np"
+                data-original-url="opto-np"
+                role="button"
+                ><span>Schedule Appointment</span></a
+              >
+            </li>
+            
+          </ul>
+        </div>
+        <div class="block md:hidden">
+          <div class="mobile-nav-container">
+            <button
+              aria-label="Open menu"
+              data-element="mobile-menu-button"
+              type="button"
+              class="ant-btn css-yofhjj ant-btn-default ant-btn-color-default ant-btn-icon-only flex"
+              style="border: none"
+            >
+              <span class="ant-btn-icon"
+                ><span role="img" aria-label="menu" class="anticon anticon-menu"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="menu"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"
+                    ></path></svg></span
+              ></span>
+            </button>
+            <div
+              data-element="mobile-menu-overlay"
+              class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+              aria-hidden="true"
+            ></div>
+            <div
+              data-element="mobile-menu-drawer"
+              class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform translate-x-full"
+              aria-label="Mobile Navigation"
+              style="transition: transform 0.3s ease-in-out"
+            >
+              <div class="flex justify-between items-center p-4 border-b">
+                <span class="text-lg font-semibold">Menu</span
+                ><button
+                  aria-label="Close menu"
+                  data-element="mobile-menu-drawer-close"
+                  type="button"
+                  class="ant-btn css-yofhjj ant-btn-default ant-btn-color-default ant-btn-icon-only"
+                >
+                  <span class="ant-btn-icon"
+                    ><span
+                      role="img"
+                      aria-label="close"
+                      class="anticon anticon-close"
+                      ><svg
+                        fill-rule="evenodd"
+                        viewBox="64 64 896 896"
+                        focusable="false"
+                        data-icon="close"
+                        width="1em"
+                        height="1em"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z"
+                        ></path></svg></span
+                  ></span>
+                </button>
+              </div>
+              <div class="mobile-menu-content">
+                <div class="mobile-menu-item">
+                  <a
+                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                    data-original-url="/about"
+                    aria-label="About"
+                    href="https://reviewwave.website/sales-review-wave/about"
+                    >About</a
+                  >
+                </div>
+                <div class="mobile-menu-item">
+                  <div
+                    class="flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
+                  >
+                    <a
+                      class="flex-1 block px-4 py-3 text-base font-medium"
+                      data-original-url="/services"
+                      href="https://reviewwave.website/sales-review-wave/services"
+                      >Services</a
+                    ><button
+                      class="px-4 py-3 hover:bg-gray-100 transition-colors duration-150"
+                      aria-expanded="false"
+                      aria-label="Toggle Services submenu"
+                      data-submenu-toggle="3"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="mobile-submenu pl-4 bg-gray-50 transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+                    data-submenu-content="3"
+                  >
+                    <div class="py-2">
+                      <a
+                        data-original-url="/chiropractic-adjustments"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/chiropractic-adjustments"
+                        >Chiropractic Adjustments</a
+                      ><a
+                        data-original-url="/pain-management"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/pain-management"
+                        >Pain Management</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-menu-item">
+                  <div
+                    class="flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
+                  >
+                    <a
+                      class="flex-1 block px-4 py-3 text-base font-medium"
+                      data-original-url="/symptoms"
+                      href="https://reviewwave.website/sales-review-wave/symptoms"
+                      >Symptoms</a
+                    ><button
+                      class="px-4 py-3 hover:bg-gray-100 transition-colors duration-150"
+                      aria-expanded="false"
+                      aria-label="Toggle Symptoms submenu"
+                      data-submenu-toggle="5"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="mobile-submenu pl-4 bg-gray-50 transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+                    data-submenu-content="5"
+                  >
+                    <div class="py-2">
+                      <a
+                        data-original-url="/back-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/back-pain"
+                        >Back Pain</a
+                      ><a
+                        data-original-url="/neck-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/neck-pain"
+                        >Neck Pain</a
+                      ><a
+                        data-original-url="/headaches-and-migraines"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/headaches-and-migraines"
+                        >Headaches and Migraines</a
+                      ><a
+                        data-original-url="/scoliosis"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/scoliosis"
+                        >Scoliosis</a
+                      ><a
+                        data-original-url="/arm-and-leg-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/arm-and-leg-pain"
+                        >Arm and Leg Pain</a
+                      ><a
+                        data-original-url="/shoulder-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/shoulder-pain"
+                        >Shoulder Pain</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-menu-item">
+                  <a
+                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                    data-original-url="/contact"
+                    aria-label="Contact"
+                    href="https://reviewwave.website/sales-review-wave/contact"
+                    >Contact</a
+                  >
+                </div>
+                <div class="mobile-menu-item px-4 py-2">
+                  <a
+                    class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-block"
+                    style="
+                      background-color: rgb(255, 255, 255);
+                      border-color: rgb(255, 255, 255);
+                      color: rgb(22, 119, 255);
+                      font-weight: 600;
+                      border-radius: 8px;
+                    "
+                    href="tel:(949)383-4022"
+                    data-original-url="tel:(949)383-4022"
+                    role="button"
+                    ><span>(949) 383-4022</span></a
+                  >
+                </div>
+                <div class="mobile-menu-item px-4 py-2">
+                  <a
+                    class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-block"
+                    style="font-weight: 500; border-radius: 6px"
+                    href="https://reviewwave.website/sales-review-wave/opto-np"
+                    data-original-url="opto-np"
+                    role="button"
+                    ><span>Schedule Appointment</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="max-w-screen-xl mx-4 xl:mx-auto my-6 px-2">
+    <div class="flex flex-col justify-center hero p-4" style="background: var(--hero) center center / cover no-repeat; height: 60vh; min-height: 420px; border-radius: 20px;">
+      <h1
+        class="text-center py-6 relative z-10"
+        style="color: var(--white);"
+      >Aloha Chiropractic</h1>
+      <p class="text-center relative z-10 pb-6" style="color: var(--white)">New Patient Special including initial adjustment and X-Rays starting at $75!</p>
+      <a href="#" class="btn mx-auto relative z-10">Schedule Appointment</a>
+    </div>
+    </div>
+    <section class="max-w-screen-xl mx-auto px-4 py-8 md:py-16">
+      <div class="flex flex-col-reverse md:flex-row align-center gap-8">
+        <div class="basis-full md:basis-50">
+          <h2>Your McKinney Chiropractor</h2>
+          <h3 class="mb-8">Personalized Care for Your Well-being</h3>
+          <p class="my-4">Finding relief from pain and achieving optimal wellness shouldn't be a struggle. At our leading chiropractic clinic in McKinney, we're dedicated to helping you discover the transformative power of natural healing. Our comprehensive chiropractic services are designed to address your unique health concerns while promoting long-term wellness throughout the vibrant McKinney community.</p>
+          <p class="my-4">Living in McKinney means embracing an active lifestyle, whether you're enjoying the beautiful parks, participating in recreational activities, or managing the demands of a busy professional life. When pain or discomfort interferes with your daily routine, our experienced chiropractic team is here to help you reclaim your vitality and return to the activities you love.</p>
+          <p class="my-4">Our state-of-the-art chiropractic facility in McKinney combines cutting-edge technology with time-tested treatment methods to deliver exceptional results. We understand that each patient's journey is unique, which is why our personalized approach to chiropractic care ensures you receive the most effective treatment plan tailored specifically to your needs.</p>
+        </div>
+        <div class="basis-full md:basis-50 flex align-center">
+          <img
+            src="https://media-library.getaloha.com/public/Adjustment+Images/Chiro+Office+-+Adjustment+1.png"
+            alt="Chiropractic clinic interior with modern equipment and welcoming atmosphere"
+            class="w-full h-auto rounded-lg shadow-lg object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="w-full px-4 py-8 md:py-16 parallax" style="background: var(--parallax-1) center center/cover no-repeat;">
+      <h2 class="text-center py-8 relative z-10" style="color: var(--white);">New Patient Special including initial adjustment and X-Rays starting at $75!</h2>
+      <a
+        href="#"
+        class="btn btn-clear mx-auto block text-center relative z-10"
+        style="background: var(--color-2); color: var(--white);"
+        >Schedule Appointment</a
+      >
+    </section>
+    <section class="max-w-screen-xl mx-auto px-4 py-8 md:py-16">
+      <div class="flex flex-col-reverse md:flex-row-reverse align-center gap-8">
+        <div class="basis-full md:basis-50">
+          <h2>Why Choose Our Chiropractic Practice in McKinney?</h2>
+          <h3 class="mb-8">Caring Support for Your Health and Vitality</h3>
+          <p class="my-4">Experienced Leadership: Our lead chiropractor brings years of experience and advanced training to every treatment session. With a deep understanding of musculoskeletal health and a commitment to continuing education, you can trust that you're receiving the highest quality care from a skilled chiropractor available in McKinney.</p>
+          <p class="my-4">Advanced Technology: We've invested in the latest chiropractic equipment and diagnostic tools to ensure accurate assessments and effective treatments. Our modern facility reflects our commitment to providing McKinney residents with access to cutting-edge healthcare solutions.</p>
+          <p class="my-4">Personalized Treatment Plans: No two patients are alike, which is why our chiropractic approach emphasizes individualized care. We take time to understand your specific concerns, lifestyle factors, and health goals before developing a customized treatment strategy.</p>
+          <p>Convenient McKinney Location: Our centrally located clinic makes it easy for residents throughout McKinney to access quality chiropractic care. With flexible scheduling options and a welcoming environment, we've made prioritizing your health more convenient than ever.</p>
+        </div>
+        <div class="basis-full md:basis-50 flex align-center">
+          <img
+            src="https://media-library.getaloha.com/public/Adjustment+Images/Chiro+Office+-+Adjustment+2.png"
+            alt="Chiropractic clinic interior with modern equipment and welcoming atmosphere"
+            class="w-full h-auto rounded-lg shadow-lg object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="w-full px-4 py-8 md:py-16 parallax" style="background: var(--parallax-2) center center/cover no-repeat;">
+      <h2 class="text-center py-8 relative z-10" style="color: var(--white);">New Patient Special including initial adjustment and X-Rays starting at $75!</h2>
+      <a
+        href="#"
+        class="btn btn-clear mx-auto block text-center relative z-10"
+        style="background: var(--color-2); color: var(--white);"
+        >Schedule Appointment</a
+      >
+    </section>
+    <section class="max-w-screen-xl mx-auto px-4 py-8 md:py-16">
+      <h2 class="text-center">What Our Patients Say</h2>
+      <div class="flex gap-8 align-stretch py-8 flex-col lg:flex-row">
+        <div class="review p-8 shadow-lg" style="background: #F9FAFB; border-radius: 8px;">
+          <p class="text-gray-700 mb-2">"Edit: 3 years later, STILL AMAZING. Just want to say, having been in business for 20 years and dealt with thousands of companies. This is one of the very few companies where the employees actually know what the heck they are doing."</p>
+          <img src="/img/stars.svg" alt="5 stars" class="mb-2" style="width: 100px; height: auto;">
+          <p class="text-gray-500 text-sm">- Jeremiah Jimerson</p>
+        </div>
+        <div class="review p-8 shadow-lg" style="background: #F9FAFB; border-radius: 8px;">
+          <p class="text-gray-700 mb-2">"Amber W. has been the key reason why companies like Aloha are still around and striving. The customer experience and tailored products is one of the reasons why I stay with them. Not only do they offer a great product, but they have dependable and knowledgeable employees like Amber!!"</p>
+          <img src="/img/stars.svg" alt="5 stars" class="mb-2" style="width: 100px; height: auto;">
+          <p class="text-gray-500 text-sm">- JD Orantes</p>
+        </div>
+        <div class="review p-8 shadow-lg" style="background: #F9FAFB; border-radius: 8px;">
+          <p class="text-gray-700 mb-2">"It has decreased the amount of phone calls our staff has to take so they are able to be more present with patients and it is easy to communicate with patients in real time using their convenient texting portal. Big shout out to Taylor S! She has been so helpful with any questions of concerns we have and she is super responsive."</p>
+          <img src="/img/stars.svg" alt="5 stars" class="mb-2" style="width: 100px; height: auto;">
+          <p class="text-gray-500 text-sm">- Mirikia Houston</p>
+        </div>
+      </div>
+    </section>
+    <div class="w-full p-4 " style="background-color: rgb(249, 250, 251); margin-bottom: 0px;"><div class="overflow-hidden bg-white w-full"><div class="overflow-hidden bg-white" style="width: 100%; height: 450px;"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26706.13804787834!2d-96.6201943!3d33.2070891!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c135cb9828fa7%3A0xa49c86cd7c21d7a!2sCommon%20Desk%20-%20McKinney%20Square!5e0!3m2!1sen!2sus!4v1752514888076!5m2!1sen!2sus" width="600" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width: 100%; height: 100%; border: none;"></iframe></div></div></div>
+    <footer class="w-full pt-10 pb-4" style="background-color: rgb(51, 51, 51)">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between gap-8 mb-8">
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Business Hours
+            </h4>
+            <ul class="list-none mt-2 p-0">
+              <li class="flex justify-between text-sm mb-1 text-white">
+                <span class="font-bold mr-2 text-white">Monday - Friday</span
+                ><span class="text-white">8:00 AM - 5:10 PM</span>
+              </li>
+              <li class="flex justify-between text-sm mb-1 text-white">
+                <span class="font-bold mr-2 text-white">Saturday - Sunday</span
+                ><span class="text-white">Closed</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Contact Information
+            </h4>
+            <address
+              class="mt-2 not-italic leading-relaxed text-sm text-white"
+            >
+              300 East Davis St McKinney, Tx 75071 (949) 383-4022
+              info@healthcareprovider.com
+            </address>
+          </div>
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Connect With Us
+            </h4>
+            <div class="flex gap-4 mt-1">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="facebook"
+                  class="anticon anticon-facebook text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="facebook"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-92.4 233.5h-63.9c-50.1 0-59.8 23.8-59.8 58.8v77.1h119.6l-15.6 120.7h-104V912H539.2V602.2H434.9V481.4h104.3v-89c0-103.3 63.1-159.6 155.3-159.6 44.2 0 82.1 3.3 93.2 4.8v107.9z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="twitter-square"
+                  class="anticon anticon-twitter-square text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="twitter-square"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM727.3 401.7c.3 4.7.3 9.6.3 14.4 0 146.8-111.8 315.9-316.1 315.9-63 0-121.4-18.3-170.6-49.8 9 1 17.6 1.4 26.8 1.4 52 0 99.8-17.6 137.9-47.4-48.8-1-89.8-33-103.8-77 17.1 2.5 32.5 2.5 50.1-2a111 111 0 01-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 01-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 00229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35 25.1-4.7 49.1-14.1 70.5-26.7-8.3 25.7-25.7 47.4-48.8 61.1 22.4-2.4 44-8.6 64-17.3-15.1 22.2-34 41.9-55.7 57.6z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="instagram"
+                  class="anticon anticon-instagram text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="instagram"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M512 378.7c-73.4 0-133.3 59.9-133.3 133.3S438.6 645.3 512 645.3 645.3 585.4 645.3 512 585.4 378.7 512 378.7zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zM512 717.1c-113.5 0-205.1-91.6-205.1-205.1S398.5 306.9 512 306.9 717.1 398.5 717.1 512 625.5 717.1 512 717.1zm213.5-370.7c-26.5 0-47.9-21.4-47.9-47.9s21.4-47.9 47.9-47.9 47.9 21.4 47.9 47.9a47.84 47.84 0 01-47.9 47.9z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Linkedin"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="linkedin"
+                  class="anticon anticon-linkedin text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="linkedin"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM349.3 793.7H230.6V411.9h118.7v381.8zm-59.3-434a68.8 68.8 0 1168.8-68.8c-.1 38-30.9 68.8-68.8 68.8zm503.7 434H675.1V608c0-44.3-.8-101.2-61.7-101.2-61.7 0-71.2 48.2-71.2 98v188.9H423.7V411.9h113.8v52.2h1.6c15.8-30 54.5-61.7 112.3-61.7 120.2 0 142.3 79.1 142.3 181.9v209.4z"
+                    ></path></svg></span
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-6">
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-2"
+          >
+            <a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Privacy Policy<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Terms of Service<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Good Faith Estimate<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >HIPAA Policy<span class="mx-2 opacity-50 text-white">•</span></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Accessibility</a
+            >
+          </div>
+          <p class="text-center text-xs text-white/70 mt-2">
+            © 2025 Healthcare Provider. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  
+  </body>
+</html>
