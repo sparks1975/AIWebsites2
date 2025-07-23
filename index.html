@@ -14,9 +14,9 @@
       --color-1: rgb(22, 119, 255);
       --color-2: rgb(44, 130, 222);
       --color-3: goldenrod; 
-      --hero: url('/img/1.jpg');
-      --parallax-1: url('/img/2.jpg');
-      --parallax-2: url('/img/3.jpg');
+      --hero: url('/img/4.jpg');
+      --parallax-1: url('/img/5.jpg');
+      --parallax-2: url('/img/6.jpg');
     }
 
     .btn {
@@ -55,6 +55,7 @@
     section h3 {
       font-size: clamp(1rem, 1.75vw, 1.2rem);
     }
+  
 
     .hero h1 {
       font-size: clamp(1.5rem, 3vw, 3rem);
@@ -78,12 +79,22 @@
       }
     }
 
-    .hero::after {
-      content: '';
-      background: rgba(0, 0, 0, .5);
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
+    .hero__image, .hero__text {
+      flex: 0 0 100%;
+    }
+
+    .hero__image {
+        min-height: 200px;
+    }
+
+    @media(min-width: 990px) {
+      .hero__image, .hero__text {
+        flex: 0 0 50%;
+      }
+
+      .hero__image {
+        min-height: 420px;
+    }
     }
 
     .parallax::after {
@@ -557,13 +568,17 @@
       </div>
     </nav>
     <div class="max-w-screen-xl mx-4 xl:mx-auto my-6 px-2">
-    <div class="flex flex-col justify-center hero p-4" style="background: var(--hero) center center / cover no-repeat; height: 60vh; min-height: 420px; border-radius: 20px;">
-      <h1
-        class="text-center py-6 relative z-10"
-        style="color: var(--white);"
-      >Aloha Chiropractic</h1>
-      <p class="text-center relative z-10 pb-6" style="color: var(--white)">New Patient Special including initial adjustment and X-Rays starting at $75!</p>
-      <a href="#" class="btn mx-auto relative z-10">Schedule Appointment</a>
+    <div class="flex align-stretch justify-center hero flex-col-reverse lg:flex-row" style="border-radius: 20px; overflow: hidden;">
+      <div class="flex flex-col p-8 justify-center hero__text" style="background: var(--color-1);">
+        <h1
+          class="text-left py-6 relative z-10"
+          style="color: var(--white);"
+        >Aloha Chiropractic</h1>
+        <p class="text-left relative z-10 pb-6" style="color: var(--white)">New Patient Special including initial adjustment and X-Rays starting at $75!</p>
+        <a href="#" class="btn btn-clear relative z-10">Schedule Appointment</a>
+      </div>
+      <div class="hero__image" style="background: var(--hero) center center/cover no-repeat;">
+      </div>
     </div>
     </div>
     <section class="max-w-screen-xl mx-auto px-4 py-8 md:py-16">
