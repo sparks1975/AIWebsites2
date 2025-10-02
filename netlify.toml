@@ -1,7 +1,13 @@
 [build]
   publish = "."
+  command = "echo 'Static site - no build required'"
 
 [[redirects]]
   from = "/features"
+  to = "/features.html"
+  status = 200
+
+[[redirects]]
+  from = "/features/"
   to = "/features.html"
   status = 200

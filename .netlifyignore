@@ -1,0 +1,9 @@
+# Only ignore node_modules and git files
+node_modules/
+.git/
+.DS_Store
+
+# Don't ignore HTML files
+!*.html
+!features.html
+!index.html
