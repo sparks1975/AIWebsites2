@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features - HTML + Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    :root {
+      --black: #4d4d4d;
+      --white: #fff;
+      --color-1: rgb(22, 119, 255);
+      --color-2: rgb(44, 130, 222);
+      --color-3: goldenrod; 
+      --hero: url('/img/4.jpg');
+      --parallax-1: url('/img/5.jpg');
+      --parallax-2: url('/img/6.jpg');
+    }
+
+    .btn {
+      background: var(--color-1);
+      color: var(--white);
+      text-align: center;
+      line-height: 1;
+      padding: 16px 24px;
+      border-radius: 8px;
+      transition: background .3s ease;
+      max-width: 240px;
+      white-space: nowrap;
+    }
+
+    .btn--header {
+      font-size: clamp(.5rem, 1.2vw, 1.2rem);
+      padding: 16px;
+    }
+
+    .btn-clear {
+      background: transparent !important;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn:hover {
+      background: var(--color-2);
+    }
+
+    section h2 {
+      font-size: clamp(1.25rem, 2vw, 2rem);
+      margin-bottom: 24px;
+    }
+
+    .section--gray {
+      background: #f9f9f9;
+      padding-block: 120px;
+    }
+
+    .feature-section {
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      counter-reset: feature-counter;
+      flex-wrap: wrap;
+      padding-inline: 24px;
+    }
+
+    .feature-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+   .feature-section--reverse .feature-section__image {
+        order: -1;
+   }
+
+    .feature-section--stack .feature-section__image {
+        order: -1;
+        flex: 0 0 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   }
+
+   .feature-section--stack .feature-section__image img {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+   }
+
+   .feature-section--stack .feature-section__text {
+        flex: 0 0 100% !important;
+        text-align: center;
+   }
+
+   .feature-section--stack h2 {
+    text-align: center;
+    width: 100%;
+   }
+
+    .feature-item span {
+        font-weight: 900;
+        font-size: .9rem;
+    }
+
+    .feature-item::before {
+      content: counter(feature-counter);
+      counter-increment: feature-counter;
+      background: var(--color-1);
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 900;
+    }
+
+    .feature-title{
+        font-size: clamp(2rem, 3vw, 3.5rem) !important;
+    }
+
+    .feature-review {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+     .feature-review__image {
+        position: relative;
+     }
+
+     .feature-review__image::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: solid 4px rgba(255, 255, 255, 0.5);
+        border-radius: 100%;
+     }
+
+     .feature-review__image img {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        width: 80px !important;
+        height: 80px !important;
+        min-width: 80px !important;
+        min-height: 80px !important;
+     }
+
+     .feature-review__name {
+        padding-block-start: 16px;
+        font-weight: 500;
+        font-style: italic;
+        color: var(--color-1);
+     }
+
+     /* CSS-only carousel styles */
+     .feature-section__image-carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+     }
+
+     .feature-section__image-carousel .carousel-container {
+        display: flex;
+        transition: transform 0.3s ease;
+     }
+
+     .feature-section__image-carousel .carousel-slide {
+        min-width: 100%;
+        position: relative;
+     }
+
+     .feature-section__image-carousel .carousel-slide img {
+        width: auto;
+        height: auto;
+        display: block;
+        max-height: 600px;
+        margin: 0 auto;
+     }
+
+     .feature-section__image-carousel .carousel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: background-color 0.2s ease;
+     }
+
+     .feature-section__image-carousel .carousel-nav:hover {
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+     }
+
+     .feature-section__image-carousel .carousel-nav.prev {
+        left: 10px;
+     }
+
+     .feature-section__image-carousel .carousel-nav.next {
+        right: 10px;
+     }
+
+     .feature-section__image-carousel .carousel-nav::after {
+        content: '';
+        border: solid var(--color-1);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+     }
+
+     .feature-section__image-carousel .carousel-nav.prev::after {
+        transform: rotate(135deg);
+     }
+
+     .feature-section__image-carousel .carousel-nav.next::after {
+        transform: rotate(-45deg);
+     }
+
+     .feature-section__image-carousel .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+     }
+
+     .feature-section__image-carousel .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.3);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border: none;
+     }
+
+     .feature-section__image-carousel .carousel-dot.active {
+        background: var(--color-1);
+     }
+
+    /* Smooth animations for feature visual elements */
+    .feature-visual {
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-section:hover .feature-visual {
+      transform: scale(1);
+    }
+
+    /* Custom scrollbar for better aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .parallax::after {
+      content: '';
+      background: rgba(0, 0, 0, .5);
+      position: absolute;
+      inset: 0;
+    }
+  </style>
+  <body>
+    <nav
+      id="navigation"
+      class="w-full"
+      role="navigation"
+      aria-label="Main Navigation"
+      style="padding: 20px; background-color: rgb(255, 255, 255)"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex-shrink-0">
+          <a
+            data-original-url="/"
+            aria-label="Home"
+            href="index.html"
+            ><img
+              src="https://getaloha.com/wp-content/uploads/2024/07/aloha-logo.png"
+              alt="Chiropractic clinic logo - professional spine care services"
+              style="height: 50px"
+              loading="lazy"
+          /></a>
+        </div>
+        <div class="hidden md:block">
+          <ul class="hidden md:flex items-center gap-3 list-none">
+            <li class="inline-block">
+              <a
+                data-original-url="/about"
+                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                aria-label="About"
+                style="
+                  color: rgb(0, 0, 0);
+                  font-size: 16px;
+                  text-decoration: none;
+                  display: block;
+                  padding: 4px 8px;
+                  border-radius: 4px;
+                "
+                href="https://reviewwave.website/sales-review-wave/about"
+                >About</a
+              >
+            </li>
+            <li class="inline-block">
+              <a
+                data-original-url="/features"
+                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                aria-label="Features"
+                style="
+                  color: rgb(22, 119, 255);
+                  font-size: 16px;
+                  text-decoration: none;
+                  display: block;
+                  padding: 4px 8px;
+                  border-radius: 4px;
+                  font-weight: 600;
+                "
+                href="features.html"
+                >Features</a
+              >
+            </li>
+            <li class="relative inline-block dropdown-container group">
+              <a
+                class="inline-flex items-center gap-1 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50 rounded px-2 py-1 dropdown-trigger"
+                aria-haspopup="true"
+                role="button"
+                data-original-url="/services"
+                style="color: rgb(0, 0, 0); font-size: 16px; cursor: pointer"
+                href="https://reviewwave.website/sales-review-wave/services"
+                >Services<svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path></svg
+              ></a>
+              <ul
+                class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                style="
+                  min-width: 200px;
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+                    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                "
+              >
+                <li>
+                  <a
+                    data-original-url="/chiropractic-adjustments"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Services - Chiropractic Adjustments"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/chiropractic-adjustments"
+                    >Chiropractic Adjustments</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/pain-management"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Services - Pain Management"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/pain-management"
+                    >Pain Management</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="relative inline-block dropdown-container group">
+              <a
+                class="inline-flex items-center gap-1 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50 rounded px-2 py-1 dropdown-trigger"
+                aria-haspopup="true"
+                role="button"
+                data-original-url="/symptoms"
+                style="color: rgb(0, 0, 0); font-size: 16px; cursor: pointer"
+                href="https://reviewwave.website/sales-review-wave/symptoms"
+                >Symptoms<svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path></svg
+              ></a>
+              <ul
+                class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                style="
+                  min-width: 200px;
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+                    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                "
+              >
+                <li>
+                  <a
+                    data-original-url="/back-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Back Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/back-pain"
+                    >Back Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/neck-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Neck Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/neck-pain"
+                    >Neck Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/headaches-and-migraines"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Headaches and Migraines"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/headaches-and-migraines"
+                    >Headaches and Migraines</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/scoliosis"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Scoliosis"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/scoliosis"
+                    >Scoliosis</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/arm-and-leg-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Arm and Leg Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/arm-and-leg-pain"
+                    >Arm and Leg Pain</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/shoulder-pain"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Symptoms - Shoulder Pain"
+                    style="color: rgb(0, 0, 0)"
+                    href="https://reviewwave.website/sales-review-wave/shoulder-pain"
+                    >Shoulder Pain</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="inline-block">
+              <a
+                data-original-url="/contact"
+                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                aria-label="Contact"
+                style="
+                  color: rgb(0, 0, 0);
+                  font-size: 16px;
+                  text-decoration: none;
+                  display: block;
+                  padding: 4px 8px;
+                  border-radius: 4px;
+                "
+                href="https://reviewwave.website/sales-review-wave/contact"
+                >Contact</a
+              >
+            </li>
+            <li class="inline-block">
+              <a
+                class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+                style="
+                  background-color: rgb(255, 255, 255);
+                  border-color: rgb(255, 255, 255);
+                  color: rgb(22, 119, 255);
+                  font-weight: 600;
+                  border-radius: 8px;
+                "
+                href="tel:(949)383-4022"
+                data-original-url="tel:(949)383-4022"
+                role="button"
+                ><span>(949) 383-4022</span></a
+              >
+            </li>
+            <li class="inline-block">
+              <a
+                class="btn btn--header ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+                style="font-weight: 500; border-radius: 6px"
+                href="https://reviewwave.website/sales-review-wave/opto-np"
+                data-original-url="opto-np"
+                role="button"
+                ><span>Schedule Appointment</span></a
+              >
+            </li>
+            
+          </ul>
+        </div>
+        <div class="block md:hidden">
+          <div class="mobile-nav-container">
+            <button
+              aria-label="Open menu"
+              data-element="mobile-menu-button"
+              type="button"
+              class="ant-btn css-yofhjj ant-btn-default ant-btn-color-default ant-btn-icon-only flex"
+              style="border: none"
+            >
+              <span class="ant-btn-icon"
+                ><span role="img" aria-label="menu" class="anticon anticon-menu"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="menu"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"
+                    ></path></svg></span
+              ></span>
+            </button>
+            <div
+              data-element="mobile-menu-overlay"
+              class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+              aria-hidden="true"
+            ></div>
+            <div
+              data-element="mobile-menu-drawer"
+              class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform translate-x-full"
+              aria-label="Mobile Navigation"
+              style="transition: transform 0.3s ease-in-out"
+            >
+              <div class="flex justify-between items-center p-4 border-b">
+                <span class="text-lg font-semibold">Menu</span
+                ><button
+                  aria-label="Close menu"
+                  data-element="mobile-menu-drawer-close"
+                  type="button"
+                  class="ant-btn css-yofhjj ant-btn-default ant-btn-color-default ant-btn-icon-only"
+                >
+                  <span class="ant-btn-icon"
+                    ><span
+                      role="img"
+                      aria-label="close"
+                      class="anticon anticon-close"
+                      ><svg
+                        fill-rule="evenodd"
+                        viewBox="64 64 896 896"
+                        focusable="false"
+                        data-icon="close"
+                        width="1em"
+                        height="1em"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z"
+                        ></path></svg></span
+                  ></span>
+                </button>
+              </div>
+              <div class="mobile-menu-content">
+                <div class="mobile-menu-item">
+                  <a
+                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                    data-original-url="/about"
+                    aria-label="About"
+                    href="https://reviewwave.website/sales-review-wave/about"
+                    >About</a
+                  >
+                </div>
+                <div class="mobile-menu-item">
+                  <a
+                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                    data-original-url="/features"
+                    aria-label="Features"
+                    href="features.html"
+                    >Features</a
+                  >
+                </div>
+                <div class="mobile-menu-item">
+                  <div
+                    class="flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
+                  >
+                    <a
+                      class="flex-1 block px-4 py-3 text-base font-medium"
+                      data-original-url="/services"
+                      href="https://reviewwave.website/sales-review-wave/services"
+                      >Services</a
+                    ><button
+                      class="px-4 py-3 hover:bg-gray-100 transition-colors duration-150"
+                      aria-expanded="false"
+                      aria-label="Toggle Services submenu"
+                      data-submenu-toggle="3"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="mobile-submenu pl-4 bg-gray-50 transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+                    data-submenu-content="3"
+                  >
+                    <div class="py-2">
+                      <a
+                        data-original-url="/chiropractic-adjustments"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/chiropractic-adjustments"
+                        >Chiropractic Adjustments</a
+                      ><a
+                        data-original-url="/pain-management"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/pain-management"
+                        >Pain Management</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-menu-item">
+                  <div
+                    class="flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
+                  >
+                    <a
+                      class="flex-1 block px-4 py-3 text-base font-medium"
+                      data-original-url="/symptoms"
+                      href="https://reviewwave.website/sales-review-wave/symptoms"
+                      >Symptoms</a
+                    ><button
+                      class="px-4 py-3 hover:bg-gray-100 transition-colors duration-150"
+                      aria-expanded="false"
+                      aria-label="Toggle Symptoms submenu"
+                      data-submenu-toggle="5"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="mobile-submenu pl-4 bg-gray-50 transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+                    data-submenu-content="5"
+                  >
+                    <div class="py-2">
+                      <a
+                        data-original-url="/back-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/back-pain"
+                        >Back Pain</a
+                      ><a
+                        data-original-url="/neck-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/neck-pain"
+                        >Neck Pain</a
+                      ><a
+                        data-original-url="/headaches-and-migraines"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/headaches-and-migraines"
+                        >Headaches and Migraines</a
+                      ><a
+                        data-original-url="/scoliosis"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/scoliosis"
+                        >Scoliosis</a
+                      ><a
+                        data-original-url="/arm-and-leg-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/arm-and-leg-pain"
+                        >Arm and Leg Pain</a
+                      ><a
+                        data-original-url="/shoulder-pain"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="https://reviewwave.website/sales-review-wave/shoulder-pain"
+                        >Shoulder Pain</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-menu-item">
+                  <a
+                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
+                    data-original-url="/contact"
+                    aria-label="Contact"
+                    href="https://reviewwave.website/sales-review-wave/contact"
+                    >Contact</a
+                  >
+                </div>
+                <div class="mobile-menu-item px-4 py-2">
+                  <a
+                    class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-block"
+                    style="
+                      background-color: rgb(255, 255, 255);
+                      border-color: rgb(255, 255, 255);
+                      color: rgb(22, 119, 255);
+                      font-weight: 600;
+                      border-radius: 8px;
+                    "
+                    href="tel:(949)383-4022"
+                    data-original-url="tel:(949)383-4022"
+                    role="button"
+                    ><span>(949) 383-4022</span></a
+                  >
+                </div>
+                <div class="mobile-menu-item px-4 py-2">
+                  <a
+                    class="ant-btn css-yofhjj ant-btn-primary ant-btn-color-primary ant-btn-variant-solid ant-btn-block"
+                    style="font-weight: 500; border-radius: 6px"
+                    href="https://reviewwave.website/sales-review-wave/opto-np"
+                    data-original-url="opto-np"
+                    role="button"
+                    ><span>Schedule Appointment</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-white py-24">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-8 fade-up">
+          Features
+        </h1>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section>
+
+        
+
+        <!-- Feature Sections -->
+        <div class="space-y-32">
+          <!-- AI Websites + SEO -->
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Aloha Voice</h2>
+              </div>
+              <div class="basis-1 md:basis-1/2 feature-section__image">
+                <div class="">
+                  <img src="https://getaloha.com/wp-content/uploads/2025/09/hero2.png" alt="Aloha Voice">
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Crystal-Clear Call Quality</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Smart Call Routing</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Integrated Call Pop</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Call Logs and Analytics</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Dean-DePice-Video-Testimonial.jpg" alt="Dr. Dean DePice" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "Practice is BOOMING! Psyched to receive the blessings of Aloha. Aloha
+                    simplifies our front desk."
+                    </p>
+                    <div class="feature-review__name">Dr. Dean DePice</div>
+                </div>
+            </div>
+          </div>
+          <div class="section--gray">
+          <div class="feature-section feature-section--stack fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12 flex-wrap">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Two-Way Texting</h2>
+              </div>
+              <div class="feature-section__image-carousel">
+                  <div class="carousel-container">
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/6.png" alt="two-way texting 1">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/5.png" alt="two-way texting 2">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/4.png" alt="two-way texting 3">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/3.png" alt="two-way texting 4">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/2.png" alt="two-way texting 5">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/1.png" alt="two-way texting 6">
+                    </div>
+                  </div>
+                  <div class="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
+                    <button class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Real-Time Messaging</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Conversation History</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Text From Your Office</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">No Phone Tag</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Jacob-Robinson-Video-Testimonial.jpg" alt="Dr. Jacob Robinson" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "I love Aloha. I highly, highly recommend. If you’re on the fence,
+                    definitely check into Aloha and just know that it works." 
+                    </p>
+                    <div class="feature-review__name">Dr. Jacob Robinson</div>
+                </div>
+            </div>
+          </div>
+          </div>
+           <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Insurance Verification</h2>
+              </div>
+              <div class="basis-1 md:basis-1/2 feature-section__image">
+                <div class="">
+                  <img src="https://getaloha.com/wp-content/uploads/2025/08/iv_hero-2.png" alt="Insurance Verification">
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Instant Eligibility Checks</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Multi-Carrier Support</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Patient Record Updates</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Reduce Claim Denials</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Marc-Gottlieb.jpg" alt="Dr. Marc Gottlieb" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "I can't speak highly enough of Aloha. Aloha is for everybody that's
+                     interested in building their practice."
+                    </p>
+                    <div class="feature-review__name">Dr. Marc Gottlieb</div>
+                </div>
+            </div>
+          </div>
+          <div class="section--gray">
+            <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Charlie AI</h2>
+              </div>
+              <div class="basis-1 md:basis-1/2 feature-section__image">
+                <div class="">
+                  <img src="https://getaloha.com/wp-content/uploads/2025/08/charlie_3.png" alt="Charlie AI">
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Smart Appointment Booking</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Automated Reminders</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Patient FAQ Responses</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">24/7 Availability</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Matt-Green.jpg" alt="Dr. Matt Green" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "The thing that really stands out for me is how automated everything
+          is in terms of communicating and staying connected with patients."
+                    </p>
+                    <div class="feature-review__name">Dr. Matt Green</div>
+                </div>
+            </div>
+          </div>
+          </div>
+          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">5-Star Reviews</h2>
+              </div>
+              <div class="feature-section__image-carousel">
+                  <div class="carousel-container">
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/1-1.png" alt="5-star review generation 1">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/2-1.png" alt="5-star review generation 2">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/3-2.png" alt="5-star review generation 3">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/4-2.png" alt="5-star review generation 4">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/5-1.png" alt="5-star review generation 5">
+                    </div>
+                  </div>
+                  <div class="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Automated Review Requests</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Multi-Platform Posting</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Review Monitoring Dashboard</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">On-Site Display Widgets</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Billy-DeMoss-Testimonial.jpg" alt="Dr. Billy DeMoss" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "We started out with 7 reviews and now we're upwards of 80. It's
+          really helped attract a lot more new patients to our office."
+                    </p>
+                    <div class="feature-review__name">Dr. Billy DeMoss</div>
+                </div>
+            </div>
+          </div>
+          <div class="section--gray">
+          <div class="feature-section feature-section--stack fade-up max-w-[1000px] mx-auto my-0">
+            <div class="flex flex-col md:flex-row align-center gap-12 flex-wrap">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Provider App</h2>
+              </div>
+              <div class="feature-section__image-carousel">
+                  <div class="carousel-container">
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/1-2.png" alt="provider app 1">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/2-2.png" alt="provider app 2">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/3-1.png" alt="provider app 3">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/4-1.png" alt="provider app 4">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/5-2.png" alt="provider app 5">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/09/6-1.png" alt="provider app 6">
+                    </div>
+                  </div>
+                  <div class="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
+                    <button class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Real-Time Scheduling</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Secure Two-Way Messaging</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Instant Notifications</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Patient Insights</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Jacob-Melendez-Video-Testimonial.jpg" alt="Dr. Jacob Melendez" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "One of the best things that we found with Aloha is with the app. It's just a seamless way to check our schedule."
+                    </p>
+                    <div class="feature-review__name">Dr. Jacob Melendez</div>
+                </div>
+            </div>
+          </div>
+          </div>
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0 pb-[120px]">
+            <div class="flex flex-col md:flex-row align-center gap-12">
+              <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
+                <h2 class="text-3xl font-bold text-gray-900 feature-title">Practice Analytics</h2>
+              </div>
+              <div class="basis-1 md:basis-1/2 feature-section__image">
+                <div class="">
+                  <img src="https://getaloha.com/wp-content/uploads/2025/09/PracticeAnalytics.png" alt="Practice Analytics">
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Customizable Dashboards</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Patient Growth Reports</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Revenue Tracking</span>
+                  </div>
+                  <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
+                    <span class="text-gray-700">Performance Alerts</span>
+                  </div>
+            </div>
+            <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
+                <div class="feature-review__image">
+                    <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Garren-Cullison-Video-Testimonial.jpg" alt="Dr. Garren Cullison" class=" rounded-full object-cover">
+                </div>
+                <div class="feature-review__text">
+                    <p>
+                    "We've seen great ROI with Aloha, and our Google rating has gone
+          through the roof and it's helped tremendously."
+                    </p>
+                    <div class="feature-review__name">Dr. Garren Cullison</div>
+                </div>
+            </div>
+          </div>
+        </div>
+    
+    </section>
+    
+
+    <!-- Pricing Section -->
+    <section class="py-32 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-5xl font-bold text-gray-900 mb-8 fade-up">
+            Choose Your Plan
+          </h2>
+          <p class="text-xl text-gray-600 fade-up delay-200">
+            Select the perfect plan for your practice's needs
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Premium Plan -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up flex flex-col h-full">
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+              <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
+              <div class="text-4xl font-bold text-gray-900 mb-2">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
+            </div>
+            
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Business 2 Way Texting</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">7,500 text/mo</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Review Automation</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Online Scheduling</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">iOS and Android Apps</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Unlimited Campaigns</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Interactive Calendar</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Drag and Drop Email Editor</span>
+              </li>
+            </ul>
+            
+            <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Pro Plan -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 border-2 border-blue-500 flex flex-col h-full">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+            </div>
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+              <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
+              <div class="text-4xl font-bold text-gray-900 mb-2">$399<span class="text-lg font-normal text-gray-600">/mo</span></div>
+            </div>
+            
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Everything in Premium Plan +</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">10,000 text/mo</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Digital Forms</span>
+              </li>
+            </ul>
+            
+            <button class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Elite Plan -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-400 flex flex-col h-full">
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+              <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
+              <div class="text-4xl font-bold text-gray-900 mb-2">$499<span class="text-lg font-normal text-gray-600">/mo</span></div>
+            </div>
+            
+            <ul class="space-y-4 mb-8 flex-grow">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700 font-medium">Everything in Pro Plan +</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">12,500 text/mo</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">After Hours AI Attendant</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Website Chat</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Referral Engine</span>
+              </li>
+            </ul>
+            
+            <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Additional Enhancements Section -->
+        <div class="mt-24">
+          <div class="text-center mb-16">
+            <h3 class="text-4xl font-bold text-gray-900 mb-4 fade-up">
+              Additional Enhancements
+            </h3>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- CharlieAI Receptionist -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up flex flex-col h-full">
+              <div class="mb-6">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">CharlieAI Receptionist</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                <p class="text-gray-600 mb-6">Eliminate missed calls and scheduling gaps with Charlie the AI Receptionist.</p>
+              </div>
+              
+              <ul class="space-y-3 mb-8 flex-grow">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Schedules, confirms, and reschedules appointments</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Available 24/7</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Reduce Administrative Burden</span>
+                </li>
+              </ul>
+              
+              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                Add Enhancement
+              </button>
+            </div>
+
+            <!-- Insurance Verification Engine -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 flex flex-col h-full">
+              <div class="mb-6">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Insurance Verification Engine</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                <p class="text-gray-600 mb-6">Minimize delays and reduce claim denials with real-time insurance verification in one portal.</p>
+              </div>
+              
+              <ul class="space-y-3 mb-8 flex-grow">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Vision & Medical Insurance Verification</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Automate Eligibility & Benefits Searches</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Reduce Claim Denials</span>
+                </li>
+              </ul>
+              
+              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                Add Enhancement
+              </button>
+            </div>
+
+            <!-- AI Website & SEO -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-400 flex flex-col h-full">
+              <div class="mb-6">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">AI Website & SEO</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$199<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                <p class="text-gray-600 mb-6">Improve online visibility, boost local reach, and convert more web traffic to book.</p>
+              </div>
+              
+              <ul class="space-y-3 mb-8 flex-grow">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Improve online presence</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Provide 24/7 scheduling access</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Showcase social proof</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Increase reach</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Show up where patients search</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Stand out among competitors</span>
+                </li>
+              </ul>
+              
+              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                Add Enhancement
+              </button>
+            </div>
+
+            <!-- Aloha Voice -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-600 flex flex-col h-full">
+              <div class="mb-6">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Aloha Voice</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$20<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                <p class="text-gray-600 mb-6">Enhance your office with the best-in-class VoIP Phone systems that are easy, affordable, and reliable.</p>
+              </div>
+              
+              <ul class="space-y-3 mb-8 flex-grow">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Unlimited calling within US/Canada</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Unlimited eFax included</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Advanced call routing and queuing</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Full integration with Aloha Patient Engagement System</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Voicemail to email transcription</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Real-time reporting to analytics dashboard</span>
+                </li>
+              </ul>
+              
+              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                Add Enhancement
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="w-full pt-10 pb-4" style="background-color: rgb(51, 51, 51)">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:justify-between gap-8 mb-8">
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Business Hours
+            </h4>
+            <ul class="list-none mt-2 p-0">
+              <li class="flex justify-between text-sm mb-1 text-white">
+                <span class="font-bold mr-2 text-white">Monday - Friday</span
+                ><span class="text-white">8:00 AM - 5:10 PM</span>
+              </li>
+              <li class="flex justify-between text-sm mb-1 text-white">
+                <span class="font-bold mr-2 text-white">Saturday - Sunday</span
+                ><span class="text-white">Closed</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Contact Information
+            </h4>
+            <address
+              class="mt-2 not-italic leading-relaxed text-sm text-white"
+            >
+              300 East Davis St McKinney, Tx 75071 (949) 383-4022
+              info@healthcareprovider.com
+            </address>
+          </div>
+          <div class="flex-1 min-w-[200px]">
+            <h4
+              class="text-white mb-4 text-lg font-semibold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-500"
+            >
+              Connect With Us
+            </h4>
+            <div class="flex gap-4 mt-1">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="facebook"
+                  class="anticon anticon-facebook text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="facebook"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-92.4 233.5h-63.9c-50.1 0-59.8 23.8-59.8 58.8v77.1h119.6l-15.6 120.7h-104V912H539.2V602.2H434.9V481.4h104.3v-89c0-103.3 63.1-159.6 155.3-159.6 44.2 0 82.1 3.3 93.2 4.8v107.9z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="twitter-square"
+                  class="anticon anticon-twitter-square text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="twitter-square"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M727.3 401.7c.3 4.7.3 9.6.3 14.4 0 146.8-111.8 315.9-316.1 315.9-63 0-121.4-18.3-170.6-49.8 9 1 17.6 1.4 26.8 1.4 52 0 99.8-17.6 137.9-47.4-48.8-1-89.8-33-103.8-77 17.1 2.5 32.5 2.5 50.1-2a111 111 0 01-88.9-109v-1.4c14.7 8.3 32 13.4 50.1 14.1a111.13 111.13 0 01-49.5-92.4c0-20.7 5.4-39.6 15.1-56a315.28 315.28 0 00229 116.1C492 353.1 548.4 292 616.2 292c32 0 60.8 13.4 81.1 35 25.1-4.7 49.1-14.1 70.5-26.7-8.3 25.7-25.7 47.4-48.8 61.1 22.4-2.4 44-8.6 64-17.3-15.1 22.2-34 41.9-55.7 57.6z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="instagram"
+                  class="anticon anticon-instagram text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="instagram"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M512 378.7c-73.4 0-133.3 59.9-133.3 133.3S438.6 645.3 512 645.3 645.3 585.4 645.3 512 585.4 378.7 512 378.7zM911.8 512c0-55.2.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165zM512 717.1c-113.5 0-205.1-91.6-205.1-205.1S398.5 306.9 512 306.9 717.1 398.5 717.1 512 625.5 717.1 512 717.1zm213.5-370.7c-26.5 0-47.9-21.4-47.9-47.9s21.4-47.9 47.9-47.9 47.9 21.4 47.9 47.9a47.84 47.84 0 01-47.9 47.9z"
+                    ></path></svg></span></a
+              ><a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Linkedin"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+                ><span
+                  role="img"
+                  aria-label="linkedin"
+                  class="anticon anticon-linkedin text-2xl text-white !text-white"
+                  style="color: white"
+                  ><svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="linkedin"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM349.3 793.7H230.6V411.9h118.7v381.8zm-59.3-434a68.8 68.8 0 1168.8-68.8c-.1 38-30.9 68.8-68.8 68.8zm503.7 434H675.1V608c0-44.3-.8-101.2-61.7-101.2-61.7 0-71.2 48.2-71.2 98v188.9H423.7V411.9h113.8v52.2h1.6c15.8-30 54.5-61.7 112.3-61.7 120.2 0 142.3 79.1 142.3 181.9v209.4z"
+                    ></path></svg></span
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-6">
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-2"
+          >
+            <a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Privacy Policy<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Terms of Service<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Good Faith Estimate<span class="mx-2 opacity-50 text-white"
+                >•</span
+              ></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >HIPAA Policy<span class="mx-2 opacity-50 text-white">•</span></a
+            ><a
+              href="#"
+              class="text-xs text-white hover:text-white transition relative"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Accessibility</a
+            >
+          </div>
+          <p class="text-center text-xs text-white/70 mt-2">
+            © 2025 Healthcare Provider. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // CSS-only carousel functionality
+        const carousels = document.querySelectorAll('.feature-section__image-carousel');
+        
+        carousels.forEach(carousel => {
+          const container = carousel.querySelector('.carousel-container');
+          const slides = carousel.querySelectorAll('.carousel-slide');
+          const prevBtn = carousel.querySelector('.carousel-nav.prev');
+          const nextBtn = carousel.querySelector('.carousel-nav.next');
+          const dots = carousel.querySelectorAll('.carousel-dot');
+          
+          let currentSlide = 0;
+          
+          function updateCarousel() {
+            const translateX = -currentSlide * 100;
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+              dot.classList.toggle('active', index === currentSlide);
+            });
+          }
+          
+          function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+          }
+          
+          function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+          }
+          
+          function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+          }
+          
+          // Event listeners
+          if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+          if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+          
+          dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToSlide(index));
+          });
+          
+          // Initialize
+          updateCarousel();
+        });
+      });
+    </script>
+  </body>
+</html>
