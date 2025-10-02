@@ -1,0 +1,29 @@
+# Netlify redirects file
+# This file handles URL routing for the deployed site
+
+# Redirect /features to /features.html (clean URLs)
+/features /features.html 200
+
+# Redirect /about to external URL (based on your navigation)
+/about https://reviewwave.website/sales-review-wave/about 302
+
+# Redirect other navigation items to their external URLs
+/services https://reviewwave.website/sales-review-wave/services 302
+/chiropractic-adjustments https://reviewwave.website/sales-review-wave/chiropractic-adjustments 302
+/pain-management https://reviewwave.website/sales-review-wave/pain-management 302
+/symptoms https://reviewwave.website/sales-review-wave/symptoms 302
+/back-pain https://reviewwave.website/sales-review-wave/back-pain 302
+/neck-pain https://reviewwave.website/sales-review-wave/neck-pain 302
+/headaches-and-migraines https://reviewwave.website/sales-review-wave/headaches-and-migraines 302
+/scoliosis https://reviewwave.website/sales-review-wave/scoliosis 302
+/arm-and-leg-pain https://reviewwave.website/sales-review-wave/arm-and-leg-pain 302
+/shoulder-pain https://reviewwave.website/sales-review-wave/shoulder-pain 302
+/contact https://reviewwave.website/sales-review-wave/contact 302
+/opto-np https://reviewwave.website/sales-review-wave/opto-np 302
+
+# Handle missing file extensions for HTML files
+/features.html /features.html 200
+/index.html / 301
+
+# Fallback for any other routes - redirect to homepage
+/* / 404
