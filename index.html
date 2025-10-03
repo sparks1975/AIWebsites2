@@ -14,9 +14,16 @@
       --color-1: rgb(22, 119, 255);
       --color-2: rgb(44, 130, 222);
       --color-3: goldenrod; 
+      --color-4: #EDF6FF;
       --hero: url('/img/4.jpg');
       --parallax-1: url('/img/5.jpg');
       --parallax-2: url('/img/6.jpg');
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
     .btn {
@@ -145,22 +152,55 @@
                 >About</a
               >
             </li>
-            <li class="inline-block">
+            <li class="relative inline-block dropdown-container group">
               <a
+                class="inline-flex items-center gap-1 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50 rounded px-2 py-1 dropdown-trigger"
+                aria-haspopup="true"
+                role="button"
                 data-original-url="/features"
-                class="focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
-                aria-label="Features"
+                style="color: rgb(0, 0, 0); font-size: 16px; cursor: pointer"
+                >Features<svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path></svg
+              ></a>
+              <ul
+                class="dropdown-menu absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
                 style="
-                  color: rgb(0, 0, 0);
-                  font-size: 16px;
-                  text-decoration: none;
-                  display: block;
-                  padding: 4px 8px;
-                  border-radius: 4px;
+                  min-width: 200px;
+                  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+                    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
                 "
-                href="/features.html"
-                >Features</a
               >
+                <li>
+                  <a
+                    data-original-url="/features-chiropractic"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Features - Chiropractic"
+                    style="color: rgb(0, 0, 0)"
+                    href="/features-chiropractic.html"
+                    >Chiropractic</a
+                  >
+                </li>
+                <li>
+                  <a
+                    data-original-url="/features-optometry"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100 transition-colors duration-150"
+                    aria-label="Features - Optometry"
+                    style="color: rgb(0, 0, 0)"
+                    href="/features-optometry.html"
+                    >Optometry</a
+                  >
+                </li>
+              </ul>
             </li>
             <li class="relative inline-block dropdown-container group">
               <a
@@ -426,13 +466,51 @@
                   >
                 </div>
                 <div class="mobile-menu-item">
-                  <a
-                    class="block px-4 py-3 text-base font-medium border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150 focus:ring-2 focus:ring-blue-500 focus:bg-blue-50"
-                    data-original-url="/features"
-                    aria-label="Features"
-                    href="/features.html"
-                    >Features</a
+                  <div
+                    class="flex items-center justify-between border-b border-gray-200 hover:bg-gray-50 transition-colors duration-150"
                   >
+                    <span
+                      class="flex-1 block px-4 py-3 text-base font-medium"
+                      >Features</span
+                    ><button
+                      class="px-4 py-3 hover:bg-gray-100 transition-colors duration-150"
+                      aria-expanded="false"
+                      aria-label="Toggle Features submenu"
+                      data-submenu-toggle="features"
+                    >
+                      <svg
+                        class="w-4 h-4 transition-transform duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="mobile-submenu pl-4 bg-gray-50 transition-all duration-300 overflow-hidden max-h-0 opacity-0"
+                    data-submenu-content="features"
+                  >
+                    <div class="py-2">
+                      <a
+                        data-original-url="/features-chiropractic"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="/features-chiropractic.html"
+                        >Chiropractic</a
+                      ><a
+                        data-original-url="/features-optometry"
+                        class="block px-4 py-2 text-sm text-gray-600 border-b border-gray-100 hover:bg-gray-100 transition-colors duration-150"
+                        href="/features-optometry.html"
+                        >Optometry</a
+                      >
+                    </div>
+                  </div>
                 </div>
                 <div class="mobile-menu-item">
                   <div
