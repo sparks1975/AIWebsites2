@@ -92,9 +92,16 @@
    }
 
    .feature-section--stack .feature-section__image img {
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     display: block;
+   }
+
+   @media (min-width: 768px) {
+    .feature-section--stack .feature-section__image {
+        max-width: 600px;
+        margin: 0 auto;
+    }
    }
 
    .feature-section--stack .feature-section__text {
@@ -917,7 +924,7 @@
                   </div>
                 </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Real-Time Messaging</span>
                   </div>
@@ -957,7 +964,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Customizable Templates</span>
                   </div>
@@ -1055,7 +1062,7 @@
                   </div>
                 </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Automated Review Requests</span>
                   </div>
@@ -1094,7 +1101,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Meet Visitors Where They Are</span>
                   </div>
@@ -1133,7 +1140,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Leverage Patient Advocacy</span>
                   </div>
@@ -1171,7 +1178,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Automatic Follow-Up Via Text</span>
                   </div>
@@ -1210,7 +1217,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Appointment Reminders</span>
                   </div>
@@ -1248,7 +1255,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Every Call Gets a Human Response</span>
                   </div>
@@ -1311,7 +1318,7 @@
                     </div>
                   </div>
               </div>
-              <div class="flex flex-wrap py-20 flex-col md:flex-row">
+              <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                     <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                       <span class="text-gray-700">Real-Time Scheduling</span>
                     </div>
@@ -1349,7 +1356,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Customizable Dashboards</span>
                   </div>
@@ -1417,7 +1424,7 @@
                   </div>
                 </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Appointment Rescheduling</span>
                   </div>
@@ -1495,7 +1502,7 @@
                 </div>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Built by AI in minutes</span>
                   </div>
@@ -1527,11 +1534,11 @@
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Charlie AI</h2>
               </div>
-              <div class="basis-1 md:basis-1/2 mx-auto md:min-w-[600px]">
+              <div class="basis-1 md:basis-1/2 mx-auto min-w-[320px] md:min-w-[600px]">
                 <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1127033546?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="CharlieAI from Aloha"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Smart Appointment Booking</span>
                   </div>
