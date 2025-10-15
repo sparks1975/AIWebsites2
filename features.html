@@ -235,6 +235,26 @@
         transform: rotate(-45deg);
      }
 
+     /* Adjust arrow positioning for stacked layout */
+     .feature-section--stack .feature-section__image-carousel .carousel-nav.prev {
+        left: 120px;
+     }
+
+     .feature-section--stack .feature-section__image-carousel .carousel-nav.next {
+        right: 120px;
+     }
+
+     /* Mobile and tablet positioning */
+     @media (max-width: 768px) {
+        .feature-section--stack .feature-section__image-carousel .carousel-nav.prev {
+           left: 5px;
+        }
+
+        .feature-section--stack .feature-section__image-carousel .carousel-nav.next {
+           right: 5px;
+        }
+     }
+
      .feature-section__image-carousel .carousel-dots {
         display: flex;
         justify-content: center;
@@ -944,14 +964,8 @@
                       <img src="https://getaloha.com/wp-content/uploads/2025/09/1.png" alt="two-way texting 6">
                     </div>
                   </div>
-                  <div class="carousel-dots">
-                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
-                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
-                    <button class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
-                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
                 </div>
             </div>
             <div class="flex flex-wrap py-20 flex-col md:flex-row">
@@ -1083,13 +1097,8 @@
                       <img src="https://getaloha.com/wp-content/uploads/2025/09/5-1.png" alt="5-star review generation 5">
                     </div>
                   </div>
-                  <div class="carousel-dots">
-                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
-                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
-                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
                 </div>
             </div>
             <div class="flex flex-wrap py-20 flex-col md:flex-row">
@@ -1146,14 +1155,8 @@
                       <img src="https://getaloha.com/wp-content/uploads/2025/09/6-1.png" alt="provider app 6">
                     </div>
                   </div>
-                  <div class="carousel-dots">
-                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
-                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
-                    <button class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
-                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
                 </div>
             </div>
             <div class="flex flex-wrap py-20 flex-col md:flex-row">
@@ -1250,15 +1253,8 @@
                       <img src="https://getaloha.com/wp-content/uploads/2025/10/7.png" alt="scheduling-app 7">
                     </div>
                   </div>
-                  <div class="carousel-dots">
-                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
-                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
-                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
-                    <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
-                    <button class="carousel-dot" data-slide="4" aria-label="Go to slide 5"></button>
-                    <button class="carousel-dot" data-slide="5" aria-label="Go to slide 6"></button>
-                    <button class="carousel-dot" data-slide="6" aria-label="Go to slide 7"></button>
-                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
                 </div>
             </div>
             <div class="flex flex-wrap py-20 flex-col md:flex-row">
