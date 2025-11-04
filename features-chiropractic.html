@@ -1447,7 +1447,7 @@
             </div>
           </div>
            </div>
-          <!-- <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Aloha Voice</h2>
@@ -1472,6 +1472,11 @@
                     <span class="text-gray-700">Call Logs and Analytics</span>
                   </div>
             </div>
+            <div class="text-center mb-8">
+              <button id="technicalFeaturesBtn" class="text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 hover:opacity-90" style="background: var(--color-1);">
+                Technical Features
+              </button>
+            </div>
             <div class="feature-review flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-xl">
                 <div class="feature-review__image">
                     <img src="https://getaloha.com/wp-content/uploads/2025/03/Dr.-Dean-DePice-Video-Testimonial.jpg" alt="Dr. Dean DePice" class=" rounded-full object-cover">
@@ -1484,7 +1489,7 @@
                     <div class="feature-review__name">Dr. Dean DePice</div>
                 </div>
             </div>
-          </div> -->
+          </div>
           <!-- AI Websites + SEO -->
            
             <div class="feature-section feature-section--stack fade-up max-w-[1000px] mx-auto my-0">
@@ -1863,7 +1868,7 @@
             </div>
 
             <!-- Aloha Voice -->
-            <!-- <div class="bg-white col-span-full rounded-2xl shadow-xl p-8 relative fade-up delay-600 flex flex-col h-full basis-auto md:basis-1/3 min-h-[500px]">
+            <div class="bg-white col-span-full rounded-2xl shadow-xl p-8 relative fade-up delay-600 flex flex-col h-full basis-auto md:basis-1/3 min-h-[500px]">
               <div class="mb-6">
                 <h4 class="text-2xl font-bold text-gray-900 mb-2">Aloha Voice</h4>
                 <div class="text-3xl font-bold text-gray-900 mb-4">$20<span class="text-lg font-normal text-gray-600">/mo</span></div>
@@ -1908,7 +1913,7 @@
                   <span class="text-gray-700">Real-time reporting to analytics dashboard</span>
                 </li>
               </ul>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -2099,6 +2104,49 @@
       </div>
     </footer>
 
+    <!-- Technical Features Modal -->
+    <div id="technicalFeaturesModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" style="display: none;">
+      <div class="flex items-center justify-center min-h-screen p-4 py-20 md:p-8 md:py-20">
+        <div class="bg-white rounded-lg shadow-xl w-[90vw] md:w-[1152px] h-[60vh] md:h-[70vh] overflow-hidden">
+          <!-- Modal Header -->
+          <div class="flex justify-between items-center p-3 md:p-6 border-b">
+            <h2 class="text-lg md:text-2xl font-bold text-gray-900">Aloha Voice Technical Features</h2>
+            <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Mobile Navigation Dropdown -->
+          <div class="md:hidden p-3 border-b bg-gray-50 sticky top-0 z-10">
+            <select id="mobileFeatureSelect" class="w-full p-2 border border-gray-300 rounded-md bg-white text-sm">
+              <option value="">Select a feature...</option>
+            </select>
+          </div>
+          
+          <!-- Modal Content -->
+          <div class="flex flex-col md:flex-row h-[calc(60vh-120px)] md:h-[calc(75vh-120px)]">
+            <!-- Desktop Navigation Sidebar -->
+            <div class="hidden md:block w-1/3 border-r border-gray-200 bg-gray-50 overflow-y-auto max-h-full">
+              <div class="p-6">
+                <ul id="featureNavigation" class="space-y-2">
+                  <!-- Navigation items will be populated by JavaScript -->
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="flex-1 p-3 md:p-6 overflow-y-auto max-h-full">
+              <div id="featureContent">
+                <!-- Content will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="main.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -2150,6 +2198,416 @@
           // Initialize
           updateCarousel();
         });
+
+        // Technical Features Modal Data
+        const technicalFeatures = [
+          {
+            id: 1,
+            title: "Inbound Calling",
+            can: [
+              "Receive calls from external phone numbers to assigned Aloha Voice numbers",
+              "Display caller ID information", 
+              "Handle multiple simultaneous inbound calls",
+              "Route calls to designated extensions or groups",
+              "Provide emergency 911 service with proper address information"
+            ],
+            cannot: [
+              "Guarantee call quality on poor network connections",
+              "Receive calls without a physical Yealink IP phone (softphone not supported)"
+            ]
+          },
+          {
+            id: 2,
+            title: "Outbound Calling",
+            can: [
+              "Place calls to external phone numbers (10-digit format)",
+              "Support international dialing",
+              "Configure outbound caller ID per extension or site-wide",
+              "Dial emergency services (911)",
+              "Make toll-free calls"
+            ],
+            cannot: []
+          },
+          {
+            id: 3,
+            title: "Extension-to-Extension Calling",
+            can: [
+              "Dial 4 digit extension numbers for internal calls",
+              "Connect instantly between extensions"
+            ],
+            cannot: [
+              "Call extensions in other office locations"
+            ]
+          },
+          {
+            id: 4,
+            title: "Call Transfer",
+            can: [
+              "Transfer incoming calls between extensions"
+            ],
+            cannot: [
+              "Blind Transfer: Transfer calls to another extension or external number without acceptance (FUTURE - pending bug fix)",
+              "Attended Transfer: Consult with destination before completing transfer (FUTURE FEATURE)",
+              "Create three-way conference calls during transfer (FUTURE FEATURE)",
+              "Transfer to external phone numbers (FUTURE FEATURE)"
+            ]
+          },
+          {
+            id: 5,
+            title: "Call Groups & Routing",
+            can: [
+              "Simultaneous Ring Groups: Ring multiple extensions at once, first to answer receives call",
+              "Sequential Ring Groups: Ring members in priority order",
+              "Configure ring timeout per member (default: 25 seconds)",
+              "Configure fallback behavior (voicemail, external number)"
+            ],
+            cannot: []
+          },
+          {
+            id: 6,
+            title: "Voicemail",
+            can: [
+              "Record voice messages when calls are unanswered",
+              "Support maximum recording duration (default: 5 minutes)",
+              "Retrieve voicemail via web interface",
+              "Play and delete messages",
+              "Track message status (read/unread)",
+              "Voicemail transcription",
+              "Text-to-Speech greetings"
+            ],
+            cannot: [
+              "Email notifications with message details (FUTURE FEATURE)",
+              "SMS notifications (FUTURE FEATURE)",
+              "Custom audio file greetings (FUTURE FEATURE)",
+              "Create multiple named voicemail boxes (FUTURE FEATURE)",
+              "Assign unique greetings per voicemail box (FUTURE FEATURE)",
+              "Store unlimited voicemail messages (subject to storage limits)",
+              "Retrieve deleted voicemails after permanent deletion"
+            ]
+          },
+          {
+            id: 7,
+            title: "Call Hold & Music",
+            can: [
+              "Place callers on hold during active calls",
+              "Resume calls from hold"
+            ],
+            cannot: [
+              "Play hold music or message for caller (FUTURE FEATURE)",
+              "Upload custom hold music files (FUTURE FEATURE)",
+              "Configure Text-to-Speech hold messages (FUTURE FEATURE)"
+            ]
+          },
+          {
+            id: 8,
+            title: "Interactive Voice Response (IVR)",
+            can: [
+              "Create automated phone menu systems",
+              "Create and configure IVR menus with builder interface",
+              "Allow caller to press 1 for reception, press 2 for billing, etc",
+              "Transfer to extensions or groups based on input",
+              "Play custom messages",
+              "Handle timeout for caller inactivity"
+            ],
+            cannot: [
+              "Route differently based on business hours (FUTURE FEATURE)",
+              "Holiday schedule support (FUTURE FEATURE)",
+              "Recognize voice commands (speech recognition)",
+              "Support more than 10 menu options per level"
+            ]
+          },
+          {
+            id: 9,
+            title: "Call Logs & History",
+            can: [
+              "Display comprehensive call history with date, time, direction, duration"
+            ],
+            cannot: [
+              "Display real-time call content or transcriptions"
+            ]
+          },
+          {
+            id: 10,
+            title: "Call Recording (FUTURE FEATURE)",
+            can: [],
+            cannot: [
+              "Automatically record calls (FUTURE - not yet implemented)",
+              "Start recording at call answer (FUTURE)",
+              "Provide secure encrypted storage (FUTURE)",
+              "Store recordings indefinitely (subject to retention policies)",
+              "Edit or modify existing recordings",
+              "Recover deleted recordings after permanent deletion"
+            ]
+          },
+          {
+            id: 12,
+            title: "Phone Provisioning",
+            can: [
+              "Zero-Touch Deployment: Automatically configure supported phones",
+              "Auto-download configuration when phone connects to network",
+              "Configure SIP credentials automatically",
+              "Support Yealink IP phones (multiple models)",
+              "Enable extension dialing, PSTN dialing, emergency dialing automatically"
+            ],
+            cannot: [
+              "Provision non-supported phone models automatically",
+              "Configure phones on restricted networks without proper access",
+              "Support all phone manufacturers (limited to supported models)"
+            ]
+          },
+          {
+            id: 13,
+            title: "Emergency Services (E911)",
+            can: [
+              "Configure emergency service location information",
+              "Support site-wide default addresses",
+              "Support extension-specific addresses for remote workers",
+              "Transmit emergency address to 911 dispatchers",
+              "Validate address format and completeness",
+              "View and manage all extension E911 addresses"
+            ],
+            cannot: [
+              "Allow saving incomplete addresses"
+            ]
+          },
+          {
+            id: 14,
+            title: "Web Interface & Management",
+            can: [
+              "Display visual call status indicators and active call timer",
+              "Show caller ID information",
+              "Offer call control buttons (answer, hold, transfer, mute, hangup)",
+              "Configure extensions with numbers, names, users, caller ID, E911",
+              "Configure call routing rules and forwarding",
+              "Manage phone numbers (view, port, assign)"
+            ],
+            cannot: [
+              "Make calls without a physical Yealink IP phone (softphone not supported)",
+              "Work offline (requires internet connection)"
+            ]
+          },
+          {
+            id: 15,
+            title: "Electronic Fax (E-Fax)",
+            can: [
+              "Receive faxes in organized inbox interface",
+              "Display fax status (read/unread), sender, date, page count",
+              "Show sender information with name",
+              "Search faxes by sender",
+              "View faxes in high-quality PDF viewer",
+              "Navigate multi-page documents with zoom and page controls",
+              "Print and download faxes",
+              "Automatically mark faxes as read when viewed",
+              "Send faxes with document upload (PDF, DOC, DOCX, images)",
+              "Support multiple file uploads",
+              "Add cover message",
+              "Use cover sheet templates (Standard, Urgent Medical, Insurance)",
+              "Track transmission status (Pending, Sending, Delivered, Failed, Cancelled)",
+              "Retry failed transmissions",
+              "Save drafts with all form data and attachments",
+              "Load drafts for editing",
+              "Provide delivery confirmation and tracking"
+            ],
+            cannot: [
+              "Receive faxes without assigned fax number",
+              "Send documents larger than file size limits",
+              "Edit PDF content within the interface (view/send only)",
+              "Send color faxes (standard fax is black and white)",
+              "Receive faxes when storage quota is exceeded",
+              "Manage contacts in address book with categories (FUTURE FEATURE)",
+              "Auto-complete recipient information (FUTURE FEATURE)",
+              "Validate contact information (name, fax number, email) (FUTURE FEATURE)"
+            ]
+          },
+          {
+            id: 16,
+            title: "Future Features",
+            can: [
+              "Attended transfer with consultation",
+              "Voicemail email notifications",
+              "Voicemail SMS notifications",
+              "Custom voicemail greetings (audio upload)",
+              "Custom hold music configuration",
+              "Holiday schedule routing",
+              "Call Recording",
+              "Soft Phones"
+            ],
+            cannot: []
+          }
+        ];
+
+        // Modal functionality
+        const modal = document.getElementById('technicalFeaturesModal');
+        const btn = document.getElementById('technicalFeaturesBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const navigation = document.getElementById('featureNavigation');
+        const mobileSelect = document.getElementById('mobileFeatureSelect');
+        const content = document.getElementById('featureContent');
+
+        // Open modal
+        if (btn) {
+          btn.addEventListener('click', function() {
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            populateNavigation();
+          });
+        }
+
+        // Close modal
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore background scrolling
+          });
+        }
+
+        // Close modal when clicking outside
+        if (modal) {
+          modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+              modal.style.display = 'none';
+              modal.classList.add('hidden');
+              document.body.style.overflow = ''; // Restore background scrolling
+            }
+          });
+        }
+
+        // Populate navigation
+        function populateNavigation() {
+          // Populate desktop navigation
+          if (navigation) {
+            navigation.innerHTML = '';
+            technicalFeatures.forEach(feature => {
+              const li = document.createElement('li');
+              li.innerHTML = `
+                <button class="w-full text-left p-3 rounded hover:bg-blue-50 transition-colors feature-nav-item" data-feature-id="${feature.id}">
+                  <span class="font-medium text-gray-900">${feature.title}</span>
+                </button>
+              `;
+              navigation.appendChild(li);
+            });
+
+            // Add click handlers for desktop navigation
+            document.querySelectorAll('.feature-nav-item').forEach(item => {
+              item.addEventListener('click', function() {
+                const featureId = parseInt(this.dataset.featureId);
+                showFeatureContent(featureId);
+                
+                // Update active state
+                document.querySelectorAll('.feature-nav-item').forEach(btn => btn.classList.remove('bg-blue-100'));
+                this.classList.add('bg-blue-100');
+                
+                // Sync mobile select
+                if (mobileSelect) {
+                  mobileSelect.value = featureId;
+                }
+              });
+            });
+          }
+
+          // Populate mobile dropdown
+          if (mobileSelect) {
+            mobileSelect.innerHTML = '<option value="">Select a feature...</option>';
+            technicalFeatures.forEach(feature => {
+              const option = document.createElement('option');
+              option.value = feature.id;
+              option.textContent = feature.title;
+              mobileSelect.appendChild(option);
+            });
+
+            // Add change handler for mobile dropdown
+            mobileSelect.addEventListener('change', function() {
+              const featureId = parseInt(this.value);
+              if (featureId) {
+                showFeatureContent(featureId);
+                
+                // Update desktop navigation active state
+                document.querySelectorAll('.feature-nav-item').forEach(btn => btn.classList.remove('bg-blue-100'));
+                const activeButton = document.querySelector(`[data-feature-id="${featureId}"]`);
+                if (activeButton) {
+                  activeButton.classList.add('bg-blue-100');
+                }
+              }
+            });
+          }
+
+          // Auto-select the first item
+          if (technicalFeatures.length > 0) {
+            const firstFeature = technicalFeatures[0];
+            showFeatureContent(firstFeature.id);
+            
+            // Set active state on desktop
+            const firstButton = document.querySelector('.feature-nav-item');
+            if (firstButton) {
+              firstButton.classList.add('bg-blue-100');
+            }
+            
+            // Set selected value on mobile
+            if (mobileSelect) {
+              mobileSelect.value = firstFeature.id;
+            }
+          }
+        }
+
+        // Show feature content
+        function showFeatureContent(featureId) {
+          const feature = technicalFeatures.find(f => f.id === featureId);
+          if (!feature || !content) return;
+
+          let html = `
+            <div class="mb-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-4">${feature.title}</h3>
+            </div>
+          `;
+
+          if (feature.can.length > 0) {
+            html += `
+              <div class="mb-6">
+                <h4 class="text-lg font-semibold text-black mb-3">
+                  Can Do
+                </h4>
+                <ul class="space-y-2">
+            `;
+            feature.can.forEach(item => {
+              html += `
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 mr-3 mt-0.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">${item}</span>
+                </li>
+              `;
+            });
+            html += '</ul></div>';
+          }
+
+          if (feature.cannot.length > 0) {
+            html += `
+              <div class="mb-6">
+                <h4 class="text-lg font-semibold text-black mb-3">
+                  Cannot Do
+                </h4>
+                <ul class="space-y-2">
+            `;
+            feature.cannot.forEach(item => {
+              html += `
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 mr-3 mt-0.5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">${item}</span>
+                </li>
+              `;
+            });
+            html += '</ul></div>';
+          }
+
+          content.innerHTML = html;
+        }
       });
     </script>
   </body>
