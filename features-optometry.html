@@ -83,6 +83,10 @@
         order: -1;
    }
 
+   .feature-section--reverse .feature-section__image-carousel {
+        order: -1;  
+   }
+
     .feature-section--stack .feature-section__image {
         order: -1;
         flex: 0 0 100% !important;
@@ -238,11 +242,11 @@
 
      /* Adjust arrow positioning for stacked layout */
      .feature-section--stack .feature-section__image-carousel .carousel-nav.prev {
-        left: 120px;
+        left: 0px;
      }
 
      .feature-section--stack .feature-section__image-carousel .carousel-nav.next {
-        right: 120px;
+        right: 0px;
      }
 
      /* Mobile and tablet positioning */
@@ -960,7 +964,7 @@
           </div>
           </div>
           <!-- Digital Forms -->
-          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Digital Forms</h2>
@@ -1054,7 +1058,7 @@
             </div>
           </div>
           </div>
-          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Web Chat</h2>
@@ -1093,7 +1097,7 @@
           </div>
           <div class="section--gray">
           <!-- Referral Engine -->
-          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Referral Engine</h2>
@@ -1131,7 +1135,7 @@
             </div>
           </div>
           </div>
-          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Missed Call Texting</h2>
@@ -1170,7 +1174,7 @@
           </div>
           <div class="section--gray">
           <!-- Automation -->
-          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Automation</h2>
@@ -1208,7 +1212,7 @@
             </div>
           </div>
           </div>
-          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">After Hours Answering</h2>
@@ -1303,7 +1307,7 @@
               </div>
             </div>
           </div>
-          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
+          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Practice Analytics</h2>
@@ -1342,7 +1346,7 @@
             </div>
           </div>
           <div class="section--gray">
-            <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
+            <div class="feature-section fade-up max-w-[1000px] mx-auto my-0">
             <div class="flex flex-col md:flex-row align-center gap-12">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Insurance Verification</h2>
@@ -1381,18 +1385,47 @@
             </div>
           </div>
            </div>
-          <div class="feature-section fade-up max-w-[1000px] mx-auto my-0 pb-[120px]">
-            <div class="flex flex-col md:flex-row align-center gap-12">
+          <div class="feature-section feature-section--stack fade-up max-w-[1000px] mx-auto my-0 pb-[120px]">
+            <div class="flex flex-col md:flex-row align-center gap-12 flex-wrap">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Aloha Voice</h2>
               </div>
-              <div class="basis-1 md:basis-1/2 feature-section__image">
-                <div class="">
-                  <img src="https://getaloha.com/wp-content/uploads/2025/09/hero2.png" alt="Aloha Voice">
-                </div>
+              <div class="feature-section__image-carousel">
+                  <div class="carousel-container">
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/calllog-scaled.jpg" alt="Aloha Voice Call Log">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/voicemail-scaled.jpg" alt="Aloha Voice Fax Template Editor">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/voicemail2-scaled.jpg" alt="Aloha Voice VoIP Extension Management">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/sendfax-scaled.jpg" alt="Aloha Voice Fax Cover Sheet Templates">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/faxinbox-scaled.jpg" alt="Aloha Voice Fax Inbox">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/faxcovertemplate-scaled.jpg" alt="Aloha Voice IVR Settings">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/extensionmanagement-scaled.jpg" alt="Aloha Voice Phone Management">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/ivr_settings-scaled.jpg" alt="Aloha Voice Send Fax">
+                    </div>
+                    <div class="carousel-slide">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/phonemanagement-scaled.jpg" alt="Aloha Voice Fax Preview">
+                    </div>
+                    
+                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Crystal-Clear Call Quality</span>
                   </div>
