@@ -249,11 +249,11 @@
 
      /* Adjust arrow positioning for stacked layout */
      .feature-section--stack .feature-section__image-carousel .carousel-nav.prev {
-        left: 120px;
+        left: 0px;
      }
 
      .feature-section--stack .feature-section__image-carousel .carousel-nav.next {
-        right: 120px;
+        right: 0px;
      }
 
      /* Mobile and tablet positioning */
@@ -1451,12 +1451,12 @@
             </div>
           </div>
            </div>
-          <div class="feature-section feature-section--reverse fade-up max-w-[1000px] mx-auto my-0">
-            <div class="flex flex-col md:flex-row align-center gap-12">
+          <div class="feature-section feature-section--stack fade-up max-w-[1000px] mx-auto my-0 pb-[120px]">
+            <div class="flex flex-col md:flex-row align-center gap-12 flex-wrap">
               <div class="basis-1 flex items-center md:basis-1/2 feature-section__text">
                 <h2 class="text-3xl font-bold text-gray-900 feature-title">Aloha Voice</h2>
               </div>
-              <div class="feature-section__image-carousel md:basis-1/2">
+              <div class="feature-section__image-carousel">
                   <div class="carousel-container">
                     <div class="carousel-slide">
                       <img src="https://getaloha.com/wp-content/uploads/2025/11/calllog-scaled.jpg" alt="Aloha Voice Call Log">
@@ -1489,27 +1489,14 @@
                       <img src="https://getaloha.com/wp-content/uploads/2025/11/voicemaillog-scaled.jpg" alt="Aloha Voice Voicemail Log">
                     </div>
                     <div class="carousel-slide">
-                      <img src="https://getaloha.com/wp-content/uploads/2025/11/voicemaillist-scaled.jpg" alt="Aloha Voice Voicemail List">
+                      <img src="https://getaloha.com/wp-content/uploads/2025/11/voicemail-list-scaled.jpg" alt="Aloha Voice Voicemail List">
                     </div>
                   </div>
-                  <div class="carousel-nav prev">&lt;</div>
-                  <div class="carousel-nav next">&gt;</div>
-                  <div class="carousel-dots">
-                    <div class="carousel-dot active"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                  </div>
+                  <button class="carousel-nav prev" aria-label="Previous slide"></button>
+                  <button class="carousel-nav next" aria-label="Next slide"></button>
               </div>
             </div>
-            <div class="flex flex-wrap py-20 flex-col md:flex-row">
+            <div class="flex flex-wrap py-20 flex-col gap-[12px] md:flex-row md:gap-[0px]">
                   <div class="feature-item px-4 flex items-center gap-3 md:basis-1/4">
                     <span class="text-gray-700">Crystal-Clear Call Quality</span>
                   </div>
