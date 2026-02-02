@@ -1478,24 +1478,37 @@
     <!-- Pricing Section -->
     <section class="py-32 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 flex flex-col items-center gap-1">
           <h2 class="text-5xl font-bold text-gray-900 mb-8 fade-up">
-            Choose Your Plan
+            Easy Pricing Options That Work For Any Team
           </h2>
           <p class="text-xl text-gray-600 fade-up delay-200">
-            Annual plans. Paid monthly. <a href="https://getaloha.com/satisfaction-guarantee/" target="_blank" style="color: var(--color-1); font-weight: 700;">Satisfaction guarantee.</a>
+            Annual Plans Or Pay Monthly. <a href="https://getaloha.com/satisfaction-guarantee/" target="_blank" style="color: var(--color-1); font-weight: 700;">Satisfaction Guaranteed.</a>
           </p>
-          <p>Run your clinic with AI and focus on delivering the best care.  Get more patients that pay, stay, and refer.</p>
-          <p>One time $299 Set Up Fee.</p>
+          <p>Run your clinic with AI and focus on delivering the best care. Get more patients that pay, stay, and refer.</p>
+          <p>One time $499 set up fee</p>
+          
+          <!-- Monthly/Annual Toggle -->
+          <div class="mt-6 inline-flex items-center bg-white rounded-full p-1 shadow-md">
+            <button id="monthlyToggle" class="px-6 py-2 rounded-full font-semibold transition-all duration-200 bg-blue-600 text-white" onclick="togglePricing('monthly')">
+              MONTHLY
+            </button>
+            <button id="annualToggle" class="px-6 py-2 rounded-full font-semibold transition-all duration-200 text-gray-600" onclick="togglePricing('annual')">
+              ANNUAL
+            </button>
+          </div>
         </div>
         
         <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- Premium Plan -->
+          <!-- Activate Plan -->
           <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up flex flex-col h-full">
             <div class="mb-8">
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
-              <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
-              <div class="text-4xl font-bold text-gray-900 mb-2">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Activate</h3>
+              <p class="text-gray-600 mb-6">For teams getting started with patient engagement.</p>
+              <div class="text-4xl font-bold text-gray-900 mb-2">
+                <span class="pricing-amount" data-monthly="349" data-annual="299">$349</span>
+                <span class="text-lg font-normal text-gray-600">/mo</span>
+              </div>
             </div>
             
             <ul class="space-y-4 mb-8 flex-grow">
@@ -1509,7 +1522,7 @@
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700">7,500 text/mo</span>
+                <span class="text-gray-700">10,000 text/mo</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -1549,18 +1562,23 @@
               </li>
             </ul>
             
-           
+            <a class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-center block cta-link" data-monthly="https://getaloha.com/activate-monthly" data-annual="https://getaloha.com/activate" href="https://getaloha.com/activate-monthly">
+              Get Started
+            </a>
+            <a class="w-full mt-2 bg-transparent text-gray-900 font-semibold py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors duration-200 text-center block" href="https://getaloha.com/book-a-demo">
+              Book A Demo
+            </a>
           </div>
 
-          <!-- Elite Plan (Most Popular - Center Position) -->
-          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 border-2 border-blue-500 flex flex-col h-full">
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
-            </div>
+          <!-- Elevate Plan -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 flex flex-col h-full">
             <div class="mb-8">
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Elevate</h3>
               <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
-              <div class="text-4xl font-bold text-gray-900 mb-2">$499<span class="text-lg font-normal text-gray-600">/mo</span></div>
+              <div class="text-4xl font-bold text-gray-900 mb-2">
+                <span class="pricing-amount" data-monthly="549" data-annual="499">$549</span>
+                <span class="text-lg font-normal text-gray-600">/mo</span>
+              </div>
             </div>
             
             <ul class="space-y-4 mb-8 flex-grow">
@@ -1568,13 +1586,13 @@
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700 font-medium">Everything in Pro Plan +</span>
+                <span class="text-gray-700 font-medium">Everything in Activate +</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700">12,500 text/mo</span>
+                <span class="text-gray-700">15,000 text/mo</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -1586,19 +1604,48 @@
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700">Live Website Chat</span>
+                <span class="text-gray-700">Website Chat</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Online Forms</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Referral Engine</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">Insurance Verification</span>
               </li>
             </ul>
             
-            
+            <a class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-center block cta-link" data-monthly="https://getaloha.com/elevate-monthly" data-annual="https://getaloha.com/elevate" href="https://getaloha.com/elevate-monthly">
+              Get Started
+            </a>
+            <a class="w-full mt-2 bg-transparent text-gray-900 font-semibold py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors duration-200 text-center block" href="https://getaloha.com/book-a-demo">
+              Book A Demo
+            </a>
           </div>
 
-          <!-- Pro Plan -->
-          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-400 flex flex-col h-full">
+          <!-- Dominate Plan (Most Popular) -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-400 border-2 border-blue-500 flex flex-col h-full">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+            </div>
             <div class="mb-8">
-              <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
-              <p class="text-gray-600 mb-6">For teams ready to improve their patient experience.</p>
-              <div class="text-4xl font-bold text-gray-900 mb-2">$399<span class="text-lg font-normal text-gray-600">/mo</span></div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Dominate</h3>
+              <p class="text-gray-600 mb-6">For teams ready to maximize growth and automation.</p>
+              <div class="text-4xl font-bold text-gray-900 mb-2">
+                <span class="pricing-amount" data-monthly="749" data-annual="699">$749</span>
+                <span class="text-lg font-normal text-gray-600">/mo</span>
+              </div>
             </div>
             
             <ul class="space-y-4 mb-8 flex-grow">
@@ -1606,23 +1653,34 @@
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700 font-medium">Everything in Premium Plan +</span>
+                <span class="text-gray-700 font-medium">Everything in Elevate +</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700">10,000 text/mo</span>
+                <span class="text-gray-700">20,000 text/mo</span>
               </li>
               <li class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-                <span class="text-gray-700">Digital Forms</span>
+                <span class="text-gray-700">CharlieAI Voice</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">300 Voice AI Minutes</span>
               </li>
             </ul>
             
-          
+            <a class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-center block cta-link" data-monthly="https://getaloha.com/dominate-monthly" data-annual="https://getaloha.com/dominate" href="https://getaloha.com/dominate-monthly">
+              Get Started
+            </a>
+            <a class="w-full mt-2 bg-transparent text-gray-900 font-semibold py-3 px-6 rounded-lg border-2 border-gray-900 hover:bg-gray-100 transition-colors duration-200 text-center block" href="https://getaloha.com/book-a-demo">
+              Book A Demo
+            </a>
           </div>
         </div>
               
@@ -1638,76 +1696,10 @@
           </div>
           
           <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <!-- CharlieAI Receptionist -->
-            <!-- <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up flex flex-col h-full">
+            <!-- AI Website -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up flex flex-col h-full">
               <div class="mb-6">
-                <h4 class="text-2xl font-bold text-gray-900 mb-2">CharlieAI Receptionist</h4>
-                <div class="text-3xl font-bold text-gray-900 mb-4">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
-                <p class="text-gray-600 mb-6">Eliminate missed calls and scheduling gaps with Charlie the AI Receptionist.</p>
-              </div>
-              
-              <ul class="space-y-3 mb-8 flex-grow">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Schedules, confirms, and reschedules appointments</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Available 24/7</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Reduce Administrative Burden</span>
-                </li>
-              </ul>
-              
-              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                Add Enhancement
-              </button>
-            </div> -->
-
-            <!-- Insurance Verification Engine -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 flex flex-col h-full">
-              <div class="mb-6">
-                <h4 class="text-2xl font-bold text-gray-900 mb-2">Insurance Verification Engine</h4>
-                <div class="text-3xl font-bold text-gray-900 mb-4">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
-                <p class="text-gray-600 mb-6">Minimize delays and reduce claim denials with real-time insurance verification in one portal.</p>
-              </div>
-              
-              <ul class="space-y-3 mb-8 flex-grow">
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Vision & Medical Insurance Verification</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Automate Eligibility & Benefits Searches</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Reduce Claim Denials</span>
-                </li>
-              </ul>
-              
-              
-            </div>
-
-            <!-- AI Website & SEO -->
-            <!-- <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-400 flex flex-col h-full">
-              <div class="mb-6">
-                <h4 class="text-2xl font-bold text-gray-900 mb-2">AI Website & SEO</h4>
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">AI Website</h4>
                 <div class="text-3xl font-bold text-gray-900 mb-4">$199<span class="text-lg font-normal text-gray-600">/mo</span></div>
                 <p class="text-gray-600 mb-6">Improve online visibility, boost local reach, and convert more web traffic to book.</p>
               </div>
@@ -1747,21 +1739,17 @@
                   <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                   </svg>
-                  <span class="text-gray-700">Stand out among competitors</span>
+                  <span class="text-gray-700">Standout among competitors</span>
                 </li>
               </ul>
-              
-              <button class="w-full bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                Add Enhancement
-              </button>
-            </div> -->
+            </div>
 
-            <!-- Aloha Voice -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-600 flex flex-col h-full">
+            <!-- Insurance Verification Engine -->
+            <!-- <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-200 flex flex-col h-full">
               <div class="mb-6">
-                <h4 class="text-2xl font-bold text-gray-900 mb-2">Aloha Voice</h4>
-                <div class="text-3xl font-bold text-gray-900 mb-4">$20<span class="text-lg font-normal text-gray-600">/mo</span></div>
-                <p class="text-gray-600 mb-6">Enhance your office with the best-in-class VoIP Phone systems that are easy, affordable, and reliable.</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Insurance Verification Engine</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$299<span class="text-lg font-normal text-gray-600">/mo</span></div>
+                <p class="text-gray-600 mb-6">Minimize delays and reduce claim denials with real-time insurance verification in one portal.</p>
               </div>
               
               <ul class="space-y-3 mb-8 flex-grow">
@@ -1769,41 +1757,83 @@
                   <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                   </svg>
-                  <span class="text-gray-700">Unlimited calling within US/Canada</span>
+                  <span class="text-gray-700">Vision & Medical Insurance Verification</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                   </svg>
-                  <span class="text-gray-700">Unlimited eFax included</span>
+                  <span class="text-gray-700">Automate Eligibility & Benefits Searches</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                   </svg>
-                  <span class="text-gray-700">Advanced call routing and queuing</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Full integration with Aloha Patient Engagement System</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Voicemail to email transcription</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span class="text-gray-700">Real-time reporting to analytics dashboard</span>
+                  <span class="text-gray-700">Reduce Claim Denials</span>
                 </li>
               </ul>
               
-            
+              
+            </div> -->
+
+            <!-- Aloha Voice -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 relative fade-up delay-600 flex flex-col h-full">
+              <div class="mb-6">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Aloha Voice</h4>
+                <div class="text-3xl font-bold text-gray-900 mb-4">$20<span class="text-lg font-normal text-gray-600">/user per month</span></div>
+                <p class="text-gray-600 mb-6">Aloha Voice brings crystal-clear calling, advanced routing, and full patient record integration—all in one affordable platform.</p>
+              </div>
+              
+              <ul class="space-y-3 mb-8 flex-grow">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Unlimited Calling in US & Canada</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">VoIP Desk Phone or Softphone</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Advanced Call Routing</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Voicemail to Email Transcription</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Comprehensive Call Recording</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">eFax Included</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">Real-Time Analytics Dashboard</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-gray-700">HIPAA Compliant</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -2457,6 +2487,56 @@
           content.innerHTML = html;
         }
       });
+
+      // Pricing toggle functionality
+      function togglePricing(type) {
+        const monthlyToggle = document.getElementById('monthlyToggle');
+        const annualToggle = document.getElementById('annualToggle');
+        const pricingAmounts = document.querySelectorAll('.pricing-amount');
+        const ctaLinks = document.querySelectorAll('.cta-link');
+        
+        if (type === 'monthly') {
+          // Update toggle buttons
+          monthlyToggle.classList.add('bg-blue-600', 'text-white');
+          monthlyToggle.classList.remove('text-gray-600');
+          annualToggle.classList.remove('bg-blue-600', 'text-white');
+          annualToggle.classList.add('text-gray-600');
+          
+          // Update pricing amounts
+          pricingAmounts.forEach(amount => {
+            const monthlyPrice = amount.getAttribute('data-monthly');
+            amount.textContent = '$' + monthlyPrice;
+          });
+          
+          // Update CTA links
+          ctaLinks.forEach(link => {
+            const monthlyUrl = link.getAttribute('data-monthly');
+            if (monthlyUrl) {
+              link.setAttribute('href', monthlyUrl);
+            }
+          });
+        } else if (type === 'annual') {
+          // Update toggle buttons
+          annualToggle.classList.add('bg-blue-600', 'text-white');
+          annualToggle.classList.remove('text-gray-600');
+          monthlyToggle.classList.remove('bg-blue-600', 'text-white');
+          monthlyToggle.classList.add('text-gray-600');
+          
+          // Update pricing amounts
+          pricingAmounts.forEach(amount => {
+            const annualPrice = amount.getAttribute('data-annual');
+            amount.textContent = '$' + annualPrice;
+          });
+          
+          // Update CTA links
+          ctaLinks.forEach(link => {
+            const annualUrl = link.getAttribute('data-annual');
+            if (annualUrl) {
+              link.setAttribute('href', annualUrl);
+            }
+          });
+        }
+      }
     </script>
 
     <!-- Technical Features Modal -->
